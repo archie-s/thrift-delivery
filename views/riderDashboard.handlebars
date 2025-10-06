@@ -1,0 +1,59 @@
+<div class="space-y-6">
+    <div class="bg-white rounded-lg shadow-md p-6">
+        <h3 class="text-xl font-bold mb-4">My Deliveries Today</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="bg-blue-100 rounded p-4">
+                <div class="text-sm text-blue-600">Assigned</div>
+                <div class="text-2xl font-bold">{{assignedCount}}</div>
+            </div>
+            <div class="bg-yellow-100 rounded p-4">
+                <div class="text-sm text-yellow-600">In Progress</div>
+                <div class="text-2xl font-bold">{{inProgressCount}}</div>
+            </div>
+            <div class="bg-green-100 rounded p-4">
+                <div class="text-sm text-green-600">Completed</div>
+                <div class="text-2xl font-bold">{{completedCount}}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white rounded-lg shadow-md p-6">
+        <h3 class="text-xl font-bold mb-4">Current Deliveries</h3>
+        <div class="space-y-4">
+            {{#each currentDeliveries}}
+                <div class="border rounded-lg p-4">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h4 class="font-bold">Order #{{this.id}}</h4>
+                            <p class="text-gray-600">{{this.address}}</p>
+                            <p class="text-sm text-gray-500">Customer: {{this.customerName}}</p>
+                        </div>
+                        <div class="text-right">
+                            <span class="px-2 py-1 text-sm rounded-full 
+                                {{#if (eq this.status 'assigned')}}bg-blue-100 text-blue-800
+                                {{else if (eq this.status 'in-progress')}}bg-yellow-100 text-yellow-800
+                                {{else}}bg-green-100 text-green-800{{/if}}">
+                                {{this.status}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex justify-end space-x-2">
+                        {{#if (eq this.status 'assigned')}}
+                            <form action="/rider/start-delivery/{{this.id}}" method="POST" class="inline">
+                                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white text-sm font-bold py-2 px-4 rounded">
+                                    Start Delivery
+                                </button>
+                            </form>
+                        {{else if (eq this.status 'in-progress')}}
+                            <form action="/rider/complete-delivery/{{this.id}}" method="POST" class="inline">
+                                <button type="submit" class="bg-green-500 hover:bg-green-700 text-white text-sm font-bold py-2 px-4 rounded">
+                                    Mark as Delivered
+                                </button>
+                            </form>
+                        {{/if}}
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+</div>

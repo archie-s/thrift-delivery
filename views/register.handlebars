@@ -1,0 +1,82 @@
+<div class="max-w-md mx-auto bg-white rounded-lg shadow-md p-8">
+    <h2 class="text-2xl font-bold mb-6 text-center">Create Account</h2>
+    
+    {{#if error}}
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+            {{error}}
+        </div>
+    {{/if}}
+
+    <form action="/auth/register" method="POST" class="space-y-6">
+        <div>
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
+                Full Name
+            </label>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                   id="name" 
+                   type="text" 
+                   name="name" 
+                   required>
+        </div>
+        
+        <div>
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
+                Email
+            </label>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                   id="email" 
+                   type="email" 
+                   name="email" 
+                   required>
+        </div>
+
+        <div>
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                Password
+            </label>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                   id="password" 
+                   type="password" 
+                   name="password" 
+                   required
+                   minlength="8">
+        </div>
+
+        <div>
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="confirmPassword">
+                Confirm Password
+            </label>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                   id="confirmPassword" 
+                   type="password" 
+                   name="confirmPassword" 
+                   required>
+        </div>
+
+        <div>
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="role">
+                Role
+            </label>
+            <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="role" 
+                    name="role" 
+                    required>
+                <option value="">Select a role</option>
+                <option value="manager">Store Manager</option>
+                <option value="rider">Delivery Rider</option>
+            </select>
+        </div>
+
+        <div>
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
+                    type="submit">
+                Create Account
+            </button>
+        </div>
+
+        <div class="text-center text-sm text-gray-600">
+            Already have an account? 
+            <a href="/auth/login" class="text-blue-500 hover:text-blue-700">Login here</a>
+        </div>
+    </form>
+</div>

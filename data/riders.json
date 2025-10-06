@@ -1,0 +1,13 @@
+{
+  "riders": [
+    {
+      "id": "2",
+      "name": "Test Rider",
+      "email": "rider@test.com",
+      "phone": "+1234567890",
+      "status": "available",
+      "currentDelivery": null,
+      "completedDeliveries": 2
+    }
+  ]
+}

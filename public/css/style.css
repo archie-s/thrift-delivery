@@ -1,0 +1,57 @@
+/* Custom styles on top of Tailwind CSS */
+
+/* Add custom scrollbar for tables */
+.table-container::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.table-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Custom animations */
+.fade-in {
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Custom form styles */
+.form-input:focus {
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+}
+
+/* Status badge colors */
+.status-pending {
+    background-color: #FEF3C7;
+    color: #92400E;
+}
+
+.status-progress {
+    background-color: #DBEAFE;
+    color: #1E40AF;
+}
+
+.status-completed {
+    background-color: #D1FAE5;
+    color: #065F46;
+}

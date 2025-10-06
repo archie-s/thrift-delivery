@@ -1,0 +1,83 @@
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="bg-white rounded-lg shadow-md p-6">
+        <h3 class="text-xl font-bold mb-4">Active Deliveries</h3>
+        <div class="text-3xl font-bold text-blue-600">{{stats.activeDeliveries}}</div>
+    </div>
+    
+    <div class="bg-white rounded-lg shadow-md p-6">
+        <h3 class="text-xl font-bold mb-4">Available Riders</h3>
+        <div class="text-3xl font-bold text-green-600">{{stats.availableRiders}}</div>
+    </div>
+    
+    <div class="bg-white rounded-lg shadow-md p-6">
+        <h3 class="text-xl font-bold mb-4">Queued Orders</h3>
+        <div class="text-3xl font-bold text-yellow-600">{{stats.queuedOrders}}</div>
+    </div>
+</div>
+
+<div class="mt-8 bg-white rounded-lg shadow-md p-6">
+    <div class="flex justify-between items-center mb-6">
+        <h3 class="text-xl font-bold">Recent Deliveries</h3>
+        <a href="/manager/deliveries" class="text-blue-600 hover:text-blue-800">View All</a>
+    </div>
+    
+    <div class="overflow-x-auto">
+        {{#if stats.recentOrders}}
+        <table class="min-w-full table-auto">
+            <thead class="bg-gray-50">
+                <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Order ID</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Pickup</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Dropoff</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rider</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+                {{#each stats.recentOrders}}
+                <tr>
+                    <td class="px-6 py-4 whitespace-nowrap">{{this.id}}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">{{this.pickupLocation}}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">{{this.dropoffLocation}}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
+                            {{#if (eq this.status 'completed')}}bg-green-100 text-green-800
+                            {{else if (eq this.status 'in-progress')}}bg-yellow-100 text-yellow-800
+                            {{else}}bg-gray-100 text-gray-800{{/if}}">
+                            {{this.status}}
+                        </span>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        {{#if this.riderId}}
+                            {{this.riderId}}
+                        {{else}}
+                            <span class="text-gray-500">Unassigned</span>
+                        {{/if}}
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <a href="/manager/deliveries/{{this.id}}" class="text-blue-600 hover:text-blue-900 mr-4">View</a>
+                        {{#unless this.riderId}}
+                        <a href="/manager/assign-rider/{{this.id}}" class="text-green-600 hover:text-green-900">Assign Rider</a>
+                        {{/unless}}
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        {{else}}
+        <div class="text-center py-4 text-gray-500">
+            No recent orders to display
+        </div>
+        {{/if}}
+    </div>
+</div>
+
+<div class="mt-8 flex space-x-4">
+    <a href="/manager/add-delivery" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        Add New Delivery
+    </a>
+    <a href="/manager/add-rider" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+        Add New Rider
+    </a>
+</div>

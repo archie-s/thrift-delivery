@@ -1,0 +1,20 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Joyce",
+      "email": "manager@test.com",
+      "password": "$2b$10$hJ.G4gQ5iGkudbAq7XbQJOGIcnRyS.zF7.2uqIbbfxvDkk865g1OS",
+      "role": "manager",
+      "createdAt": "2025-10-05T16:52:47.371Z"
+    },
+    {
+      "id": "2",
+      "name": "Peter",
+      "email": "rider@test.com",
+      "password": "$2b$10$LP7ItZpsUPn0mvaLZRkSq.E2hpE0bQEqPwqiYg5C4j9Nc8o63Cpye",
+      "role": "rider",
+      "createdAt": "2025-10-05T17:29:55.169Z"
+    }
+  ]
+}
