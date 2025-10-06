@@ -29,20 +29,6 @@ A delivery management application for thrift-store owners to manage riders and t
    npm start
    ```
 
-## Project Structure
-
-```
-thriftdelivery/
-├── app.js                         # Main server file
-├── routes/                        # Route handlers
-├── controllers/                   # Business logic
-├── models/                        # Data access layer
-├── views/                        # EJS templates
-├── public/                       # Static files
-├── middleware/                   # Custom middleware
-└── utils/                       # Helper functions
-```
-
 ## Technologies Used
 
 - Node.js
