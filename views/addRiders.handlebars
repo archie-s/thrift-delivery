@@ -1,0 +1,24 @@
+<h2 class="text-xl font-bold mb-4">Add New Rider</h2>
+
+{{#if error}}
+  <div class="bg-red-100 text-red-700 px-4 py-2 rounded mb-4">{{error}}</div>
+{{/if}}
+{{#if success}}
+  <div class="bg-green-100 text-green-700 px-4 py-2 rounded mb-4">{{success}}</div>
+{{/if}}
+
+<form action="/manager/riders/add" method="POST" class="max-w-md bg-white rounded shadow p-6 mx-auto mt-8">
+  <div class="mb-4">
+    <label class="block font-medium">Name</label>
+    <input type="text" name="name" required class="w-full border rounded p-2" />
+  </div>
+  <div class="mb-4">
+    <label class="block font-medium">Email</label>
+    <input type="email" name="email" required class="w-full border rounded p-2" />
+  </div>
+  <div class="mb-4">
+    <label class="block font-medium">Contact</label>
+    <input type="text" name="contact" required class="w-full border rounded p-2" />
+  </div>
+  <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Add Rider</button>
+</form>

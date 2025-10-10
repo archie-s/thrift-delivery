@@ -1,0 +1,43 @@
+<h2 class="text-2xl font-bold mb-4">Riders List</h2>
+
+{{#if error}}
+  <div class="bg-red-100 text-red-700 px-4 py-2 rounded mb-4">{{error}}</div>
+{{/if}}
+
+{{#if success}}
+  <div class="bg-green-100 text-green-700 px-4 py-2 rounded mb-4">{{success}}</div>
+{{/if}}
+
+<table class="min-w-full bg-white shadow rounded">
+  <thead>
+    <tr>
+      <th class="px-6 py-3 text-left">ID</th>
+      <th class="px-6 py-3 text-left">Name</th>
+      <th class="px-6 py-3 text-left">Email</th>
+      <th class="px-6 py-3 text-left">Contact</th>
+      <th class="px-6 py-3 text-left">Status</th>
+      <th class="px-6 py-3 text-left">Created At</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each riders}}
+      <tr class="border-t">
+        <td class="px-6 py-4">{{id}}</td>
+        <td class="px-6 py-4">{{name}}</td>
+        <td class="px-6 py-4">{{email}}</td>
+        <td class="px-6 py-4">{{contact}}</td>
+        <td class="px-6 py-4">
+          <span class="px-2 py-1 rounded-full {{#if (eq status 'available')}}bg-green-100 text-green-700{{else}}bg-yellow-100 text-yellow-700{{/if}}">
+            {{status}}
+          </span>
+        </td>
+        <td class="px-6 py-4">{{createdAt}}</td>
+      </tr>
+    {{/each}}
+    {{#unless riders}}
+      <tr>
+        <td colspan="6" class="px-6 py-4 text-center text-gray-500">No riders found.</td>
+      </tr>
+    {{/unless}}
+  </tbody>
+</table>

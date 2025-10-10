@@ -1,5 +1,7 @@
 const Order = require('../models/Order');
 const Rider = require('../models/Rider');
+const { readUsersFile, writeUsersFile } = require('../utils/fileHandler');
+
 
 exports.getDashboard = async (req, res) => {
     try {
@@ -56,4 +58,66 @@ exports.createDelivery = async (req, res) => {
     }
 };
 
-// Add more manager controller methods here
+//Kris work(rider details and adding rider)
+
+// Adding a new rider
+
+// Show the form
+exports.renderAddRider = (req, res) => {
+    res.render('addRiders', {
+        title: 'Add Rider',
+        error: req.flash('error'),
+        success: req.flash('success')
+    });
+};
+
+// Process the form
+exports.addRider = async (req, res) => {
+    const { name, email, contact } = req.body;
+    if (!name || !email || !contact) {
+        req.flash('error', 'All fields are required');
+        return res.redirect('/manager/riders/add');
+    }
+    try {
+        // Read current users
+        const data = await readUsersFile(); // Or your riders JSON file
+        // Check for duplicate email
+        if (data.users.find(u => u.email === email)) {
+            req.flash('error', 'Email already exists');
+            return res.redirect('/manager/riders/add');
+        }
+        const newRider = {
+            id: String(data.users.length + 1),
+            name,
+            email,
+            contact,
+            role: 'rider',
+            status: 'available',
+            createdAt: new Date().toISOString(),
+        };
+        data.users.push(newRider);
+        await writeUsersFile(data);
+        req.flash('success', 'Rider added successfully');
+        res.redirect('/manager/riders'); // Or wherever you list riders
+    } catch (err) {
+        req.flash('error', 'An error occurred while adding the rider');
+        res.redirect('/manager/riders/add');
+    }
+};
+
+// List all riders
+exports.listRiders = async (req, res) => {
+    try {
+        const data = await readUsersFile();
+        const riders = data.users.filter(user => user.role === 'rider');
+        res.render('ridersList', {
+            title: 'Riders List',
+            riders,
+            success: req.flash('success'),
+            error: req.flash('error')
+        });
+    } catch (error) {
+        req.flash('error', 'Unable to load riders list');
+        res.redirect('/manager/dashboard');
+    }
+};

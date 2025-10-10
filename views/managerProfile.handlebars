@@ -1,28 +1,43 @@
-<h2>Manager Profile</h2>
+<div class="max-w-md mx-auto mt-10 bg-white rounded-lg shadow-lg p-8">
+  <h2 class="text-2xl font-bold text-blue-700 mb-6 text-center">Manager Profile</h2>
 
-<div class="card" style="max-width: 400px;">
-  <div class="card-body">
-    <p><strong>Name:</strong> {{user.name}}</p>
-    <p><strong>Email:</strong> {{user.email}}</p>
-    <p><strong>Role:</strong> {{user.role}}</p>
-    <p><strong>Account Created:</strong> {{user.createdAt}}</p>
+  <div class="mb-6">
+    <div class="flex items-center mb-2">
+      <span class="font-semibold text-gray-700 w-32">Name:</span>
+      <span class="text-gray-900">{{user.name}}</span>
+    </div>
+    <div class="flex items-center mb-2">
+      <span class="font-semibold text-gray-700 w-32">Email:</span>
+      <span class="text-gray-900">{{user.email}}</span>
+    </div>
+    <div class="flex items-center mb-2">
+      <span class="font-semibold text-gray-700 w-32">Role:</span>
+      <span class="text-gray-900">{{user.role}}</span>
+    </div>
+    <div class="flex items-center">
+      <span class="font-semibold text-gray-700 w-32">Account Created:</span>
+      <span class="text-gray-900">{{user.createdAt}}</span>
+    </div>
   </div>
+
+  <div class="mb-6">
+    {{#if user.assignedDeliveries}}
+      <h3 class="text-lg font-semibold text-blue-600 mb-2">Assigned Deliveries</h3>
+      <ul class="list-disc pl-5 space-y-2">
+        {{#each user.assignedDeliveries}}
+          <li class="bg-gray-50 rounded p-3">
+            <span class="font-semibold">Order ID:</span> {{this.id}}<br>
+            <span class="font-semibold">Status:</span> {{this.status}}<br>
+            <span class="font-semibold">Address:</span> {{this.address}}
+          </li>
+        {{/each}}
+      </ul>
+    {{else}}
+      <p class="text-gray-500">No deliveries assigned yet.</p>
+    {{/if}}
+  </div>
+
+  <a class="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition mt-4" href="/auth/profile/edit">
+    Edit Profile
+  </a>
 </div>
-
-{{#if user.assignedDeliveries}}
-  <h3>Assigned Deliveries</h3>
-  <ul>
-    {{#each user.assignedDeliveries}}
-      <li>
-        <strong>Order ID:</strong> {{this.id}}<br>
-        <strong>Status:</strong> {{this.status}}<br>
-        <strong>Address:</strong> {{this.address}}
-      </li>
-    {{/each}}
-  </ul>
-{{else}}
-  <p>No deliveries assigned yet.</p>
-{{/if}}
-
-<a class="btn btn-primary mt-3" href="/auth/profile/edit">Edit Profile</a>
-
