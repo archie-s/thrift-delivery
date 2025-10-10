@@ -23,6 +23,23 @@
       "password": "$2b$10$QTYe2ckd3jVZecDwPemlS.ouHt5VkQAeXFY8ucI4w6KOGaYVxfoe2",
       "role": "rider",
       "createdAt": "2025-10-10T21:34:25.818Z"
+    },
+    {
+      "id": "4",
+      "name": "Peris Mwangi",
+      "email": "chrissymwangi254@gmail.com",
+      "password": "$2b$10$DDwDG6MucUBQfploHiBzP.aP.FxX9Nn0EOFN4X1gk.wSOPaI/u12W",
+      "role": "manager",
+      "createdAt": "2025-10-10T22:19:44.941Z"
+    },
+    {
+      "id": "5",
+      "name": "Sabrina",
+      "email": "chricostorytime254@gmail.com",
+      "contact": "+25473098648",
+      "role": "rider",
+      "status": "available",
+      "createdAt": "2025-10-10T23:11:49.107Z"
     }
   ]
 }
