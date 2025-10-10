@@ -1,0 +1,28 @@
+<h2>Manager Profile</h2>
+
+<div class="card" style="max-width: 400px;">
+  <div class="card-body">
+    <p><strong>Name:</strong> {{user.name}}</p>
+    <p><strong>Email:</strong> {{user.email}}</p>
+    <p><strong>Role:</strong> {{user.role}}</p>
+    <p><strong>Account Created:</strong> {{user.createdAt}}</p>
+  </div>
+</div>
+
+{{#if user.assignedDeliveries}}
+  <h3>Assigned Deliveries</h3>
+  <ul>
+    {{#each user.assignedDeliveries}}
+      <li>
+        <strong>Order ID:</strong> {{this.id}}<br>
+        <strong>Status:</strong> {{this.status}}<br>
+        <strong>Address:</strong> {{this.address}}
+      </li>
+    {{/each}}
+  </ul>
+{{else}}
+  <p>No deliveries assigned yet.</p>
+{{/if}}
+
+<a class="btn btn-primary mt-3" href="/auth/profile/edit">Edit Profile</a>
+

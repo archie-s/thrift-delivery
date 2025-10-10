@@ -164,3 +164,94 @@ exports.register = async (req, res) => {
         res.redirect('/auth/register');
     }
 };
+
+// Render profile page for current user
+exports.renderProfile = async (req, res) => {
+    if (!req.session.user) {
+        req.flash('error', 'Please log in to view your profile');
+        return res.redirect('/auth/login');
+    }
+
+    try {
+        const data = await readUsersFile();
+        const user = data.users.find(u => u.id === req.session.user.id);
+
+        if (!user) {
+            req.flash('error', 'User not found');
+            return res.redirect('/auth/login');
+        }
+
+        // Choose view based on role
+        if (user.role === 'manager') {
+            res.render('managerProfile', {
+                title: 'Manager Profile',
+                user,
+                success: req.flash('success'),
+                error: req.flash('error')
+            });
+        } else {
+            res.render('riderProfile', {
+                title: 'Rider Profile',
+                user,
+                success: req.flash('success'),
+                error: req.flash('error')
+            });
+        }
+    } catch (error) {
+        req.flash('error', 'An error occurred loading profile');
+        res.redirect('/auth/login');
+    }
+};
+// Update profile for current user
+
+// Render the edit profile form
+exports.renderEditProfile = async (req, res) => {
+    if (!req.session.user) {
+        req.flash('error', 'Please log in to edit your profile');
+        return res.redirect('/auth/login');
+    }
+    try {
+        const data = await readUsersFile();
+        const user = data.users.find(u => u.id === req.session.user.id);
+        if (!user) {
+            req.flash('error', 'User not found');
+            return res.redirect('/auth/login');
+        }
+        res.render('editProfile', { user, error: req.flash('error'), success: req.flash('success') });
+    } catch (error) {
+        req.flash('error', 'An error occurred loading profile');
+        res.redirect('/auth/profile');
+    }
+};
+
+// Handle profile update (password change)
+exports.updateProfile = async (req, res) => {
+    const { newPassword, confirmPassword } = req.body;
+    if (!req.session.user) {
+        req.flash('error', 'Please log in to update your profile');
+        return res.redirect('/auth/login');
+    }
+    if (!newPassword || !confirmPassword) {
+        req.flash('error', 'All fields are required');
+        return res.redirect('/auth/profile/edit');
+    }
+    if (newPassword !== confirmPassword) {
+        req.flash('error', 'Passwords do not match');
+        return res.redirect('/auth/profile/edit');
+    }
+    try {
+        const data = await readUsersFile();
+        const user = data.users.find(u => u.id === req.session.user.id);
+        if (!user) {
+            req.flash('error', 'User not found');
+            return res.redirect('/auth/login');
+        }
+        user.password = await bcrypt.hash(newPassword, 10);
+        await writeUsersFile(data);
+        req.flash('success', 'Password updated successfully');
+        res.redirect('/auth/profile');
+    } catch (error) {
+        req.flash('error', 'An error occurred updating profile');
+        res.redirect('/auth/profile/edit');
+    }
+};
