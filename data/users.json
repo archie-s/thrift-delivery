@@ -14,6 +14,7 @@
       "email": "rider@test.com",
       "password": "$2b$10$LP7ItZpsUPn0mvaLZRkSq.E2hpE0bQEqPwqiYg5C4j9Nc8o63Cpye",
       "role": "rider",
+      "status": "available",
       "createdAt": "2025-10-05T17:29:55.169Z"
     },
     {
@@ -22,6 +23,7 @@
       "email": "christinemwangi5725@gmail.com",
       "password": "$2b$10$QTYe2ckd3jVZecDwPemlS.ouHt5VkQAeXFY8ucI4w6KOGaYVxfoe2",
       "role": "rider",
+      "status": "available",
       "createdAt": "2025-10-10T21:34:25.818Z"
     },
     {
