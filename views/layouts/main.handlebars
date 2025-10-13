@@ -6,16 +6,26 @@
     <title>Thrift Delivery - {{title}}</title>
     <link href="/css/style.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
-<body class="bg-gray-100">
-    {{> navbar}}
-    <div class="container mx-auto px-4 py-8">
-        {{#if error}}
-        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
-            {{error}}
-        </div>
-        {{/if}}
-        {{{body}}}
+<body class="bg-gray-50 min-h-screen flex flex-col">
+    <!-- Mobile Menu Toggle Button -->
+    <button id="mobileMenuToggle" class="lg:hidden fixed top-4 left-4 z-50 bg-gray-800 text-white p-2 rounded-md shadow-lg">
+        <i class='bx bx-menu text-xl'></i>
+    </button>
+
+    <div class="flex flex-1 relative">
+        {{> navbar}}
+        <main class="flex-1 lg:ml-64 transition-all duration-300 min-h-screen">
+            <div class="p-6 pb-20 lg:pt-6 pt-16"> <!-- Added top padding for mobile -->
+                {{#if error}}
+                <div class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-6 shadow-sm">
+                    {{error}}
+                </div>
+                {{/if}}
+                {{{body}}}
+            </div>
+        </main>
     </div>
     {{> footer}}
     <script src="/js/main.js"></script>

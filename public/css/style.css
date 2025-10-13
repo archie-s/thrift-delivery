@@ -1,3 +1,23 @@
+/* Add to your existing CSS */
+#mainNav {
+    transition: transform 0.3s ease-in-out;
+}
+
+#navOverlay {
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Remove or update the existing mobile navbar behavior */
+@media (max-width: 1023px) {
+    /* Remove the old display: none rule */
+}
+
+/* Ensure content doesn't get hidden behind fixed elements */
+body {
+    overflow-x: hidden;
+}
+
+/* Keep all your existing custom styles below */
 /* Custom styles on top of Tailwind CSS */
 
 /* Add custom scrollbar for tables */
@@ -54,4 +74,9 @@
 .status-completed {
     background-color: #D1FAE5;
     color: #065F46;
+}
+
+/* Navbar specific styles */
+nav {
+    z-index: 40 !important;
 }

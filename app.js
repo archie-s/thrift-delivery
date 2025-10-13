@@ -12,7 +12,19 @@ app.engine('handlebars', engine({
     defaultLayout: 'main',
     helpers: {
         eq: (v1, v2) => v1 === v2,
-        formatDate: (date) => new Date(date).toLocaleDateString(),
+        formatDate: (date) => {
+            if (!date) return 'Invalid Date';
+            try {
+                return new Date(date).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+            } catch (error) {
+                return 'Invalid Date';
+            }
+        },
+        currentYear: () => new Date().getFullYear(),
         now: () => new Date()
     }
 }));
@@ -43,6 +55,7 @@ app.use(flash());
 app.use((req, res, next) => {
     res.locals.user = req.session.user || null;
     res.locals.error = req.flash('error');
+    res.locals.success = req.flash('success');
     next();
 });
 

@@ -1,5 +1,27 @@
-<footer class="bg-gray-800 text-white py-4 mt-8">
-    <div class="container mx-auto px-4 text-center">
-        <p>&copy; {{formatDate now}} Thrift Delivery. All rights reserved.</p>
+<footer class="bg-white border-t border-gray-200 py-4 mt-auto z-10 relative">
+    <div class="ml-0 lg:ml-20 xl:ml-64 transition-all duration-300">
+        <div class="px-4 lg:px-6">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between space-y-2 md:space-y-0">
+                <div class="flex items-center justify-center md:justify-start space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-blue-500 transition-colors duration-200">
+                        <i class='bx bxl-facebook text-lg'></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors duration-200">
+                        <i class='bx bxl-twitter text-lg'></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-blue-600 transition-colors duration-200">
+                        <i class='bx bxl-linkedin text-lg'></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-red-500 transition-colors duration-200">
+                        <i class='bx bxl-instagram text-lg'></i>
+                    </a>
+                </div>
+                
+                <div class="text-center md:text-right">
+                    <p class="text-sm text-gray-600">&copy; {{currentYear}} Thrift Delivery. All rights reserved.</p>
+                    <p class="text-xs text-gray-400 mt-1">Delivering sustainability, one package at a time</p>
+                </div>
+            </div>
+        </div>
     </div>
 </footer>

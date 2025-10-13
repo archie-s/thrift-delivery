@@ -40,6 +40,14 @@
       "role": "rider",
       "status": "available",
       "createdAt": "2025-10-10T23:11:49.107Z"
+    },
+    {
+      "id": "6",
+      "name": "Jane",
+      "email": "jane@test.com",
+      "password": "$2b$10$EZBuzWqcmmvMRQ16OabkJuli9g38tLyEykdxN.vXlNlPGRQbTDeO2",
+      "role": "manager",
+      "createdAt": "2025-10-13T17:16:26.637Z"
     }
   ]
 }

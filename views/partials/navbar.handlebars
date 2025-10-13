@@ -1,26 +1,71 @@
-<nav class="bg-gray-800">
-    <div class="container mx-auto px-4">
-        <div class="flex items-center justify-between h-16">
-            <div class="flex items-center">
-                <a href="/" class="text-white font-bold text-xl">Thrift Delivery</a>
+<nav id="mainNav" class="bg-gray-800 text-white w-45 lg:w-64 min-h-screen flex flex-col fixed left-0 top-0 z-40 shadow-xl transform -translate-x-full lg:translate-x-0 transition-transform duration-300">
+    <!-- Close Button for Mobile -->
+    <button id="closeMobileMenu" class="lg:hidden absolute top-4 right-4 text-white p-1">
+        <i class='bx bx-x text-2xl'></i>
+    </button>
+
+    <!-- Logo/Brand -->
+    <div class="p-6 border-b border-gray-700 bg-gray-900 lg:pt-6 pt-16">
+        <a href="/" class="flex items-center space-x-3">
+            <span class="font-bold text-xl">Thrift Delivery</span>
+        </a>
+    </div>
+
+    <!-- Rest of your existing navbar content remains exactly the same -->
+    <div class="flex-1 flex flex-col justify-between py-6 bg-gray-800">
+        {{#if user}}
+            <div class="space-y-2 px-3">
+                {{#if (eq user.role 'manager')}}
+                    <a href="/manager/dashboard" class="flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-gray-700 transition-colors duration-200">
+                        <i class='bx bx-home text-lg text-gray-400 hover:text-white'></i>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="/manager/riders" class="flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-gray-700 transition-colors duration-200 group">
+                        <i class='bx bx-cycling text-lg text-gray-400 group-hover:text-white'></i>
+                        <span>Riders</span>
+                    </a>
+                    <a href="/manager/deliveries" class="flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-gray-700 transition-colors duration-200 group">
+                        <i class='bx bx-package text-lg text-gray-400 group-hover:text-white'></i>
+                        <span>Deliveries</span>
+                    </a>
+                {{else if (eq user.role 'rider')}}
+                    <a href="/rider/dashboard" class="flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-gray-700 transition-colors duration-200 group">
+                        <i class='bx bx-package text-lg text-gray-400 group-hover:text-white'></i>
+                        <span>My Deliveries</span>
+                    </a>
+                {{/if}}
             </div>
-            {{#if user}}
-                <div class="flex items-center">
-                    {{#if (eq user.role 'manager')}}
-                        <a href="/manager/dashboard" class="text-gray-300 hover:text-white px-3 py-2">Dashboard</a>
-                        <a href="/manager/riders" class="text-gray-300 hover:text-white px-3 py-2">Riders</a>
-                        <a href="/manager/deliveries" class="text-gray-300 hover:text-white px-3 py-2">Deliveries</a>
-                    {{else if (eq user.role 'rider')}}
-                        <a href="/rider/dashboard" class="text-gray-300 hover:text-white px-3 py-2">My Deliveries</a>
-                    {{/if}}
-                    <a href="/auth/profile" class="text-gray-300 hover:text-white px-3 py-2">Profile</a>
-                    <a href="/auth/logout" class="text-gray-300 hover:text-white px-3 py-2">Logout</a>
+
+            <!-- Profile Section -->
+            <div class="px-4 space-y-4">
+                <div class="border-t border-gray-700 pt-4">
+                    <a href="/auth/profile" class="flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-gray-700 transition-colors duration-200 group">
+                        <div class="relative">
+                            <div class="w-10 h-10 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full flex items-center justify-center">
+                                <i class='bx bx-user text-lg'></i>
+                            </div>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="font-medium truncate">{{user.name}}</p>
+                            <p class="text-sm text-gray-400 truncate">View Profile</p>
+                        </div>
+                    </a>
                 </div>
-            {{else}}
-                <div>
-                    <a href="/auth/login" class="text-gray-300 hover:text-white px-3 py-2">Login</a>
-                </div>
-            {{/if}}
-        </div>
+                <a href="/auth/logout" class="flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-red-600 transition-colors duration-200 group">
+                    <i class='bx bx-log-out text-lg text-gray-400 group-hover:text-white'></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        {{else}}
+            <div class="px-4">
+                <a href="/auth/login" class="flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-gray-700 transition-colors duration-200 group">
+                    <i class='bx bx-log-in text-lg text-gray-400 group-hover:text-white'></i>
+                    <span>Login</span>
+                </a>
+            </div>
+        {{/if}}
     </div>
 </nav>
+
+<!-- Overlay for mobile -->
+<div id="navOverlay" class="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-30 hidden"></div>

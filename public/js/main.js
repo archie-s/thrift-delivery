@@ -1,6 +1,46 @@
 // Main JavaScript file for client-side functionality
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Mobile navbar functionality
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const closeMobileMenu = document.getElementById('closeMobileMenu');
+    const mainNav = document.getElementById('mainNav');
+    const navOverlay = document.getElementById('navOverlay');
+
+    function openMobileMenu() {
+        mainNav.classList.remove('-translate-x-full');
+        navOverlay.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeMobileMenuFunc() {
+        mainNav.classList.add('-translate-x-full');
+        navOverlay.classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+
+    if (mobileMenuToggle) {
+        mobileMenuToggle.addEventListener('click', openMobileMenu);
+    }
+
+    if (closeMobileMenu) {
+        closeMobileMenu.addEventListener('click', closeMobileMenuFunc);
+    }
+
+    if (navOverlay) {
+        navOverlay.addEventListener('click', closeMobileMenuFunc);
+    }
+
+    // Close menu when clicking on nav links (mobile)
+    const navLinks = mainNav.querySelectorAll('a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth < 1024) {
+                closeMobileMenuFunc();
+            }
+        });
+    });
+
     // Flash message handling
     const flashMessages = document.querySelectorAll('.flash-message');
     flashMessages.forEach(message => {
