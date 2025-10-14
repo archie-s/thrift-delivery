@@ -1,0 +1,284 @@
+{
+  "orders": [
+    {
+      "id": "2",
+      "customerName": "kev",
+      "address": "usiu-road ",
+      "pickupLocation": "Sawa mall",
+      "dropoffLocation": "qwetu usiu",
+      "items": [
+        "laptop \r\nphone\r\nfood"
+      ],
+      "riderId": "3",
+      "status": "assigned",
+      "createdAt": "2025-10-14T07:06:36.981Z",
+      "updatedAt": "2025-10-14T07:25:12.364Z"
+    },
+    {
+      "id": "3",
+      "customerName": "Otieno",
+      "address": "kilimani 1234",
+      "pickupLocation": "kisumu",
+      "dropoffLocation": "nairobi",
+      "items": [
+        "hhurhughuhru"
+      ],
+      "riderId": "2",
+      "status": "assigned",
+      "createdAt": "2025-10-14T07:12:21.905Z",
+      "updatedAt": "2025-10-14T07:12:21.913Z"
+    },
+    {
+      "id": "4",
+      "customerName": "kamau",
+      "address": "kiambu",
+      "pickupLocation": "kiambu",
+      "dropoffLocation": "meru",
+      "items": [
+        "medication"
+      ],
+      "riderId": "3",
+      "status": "assigned",
+      "createdAt": "2025-10-14T07:16:01.506Z",
+      "updatedAt": "2025-10-14T07:16:01.510Z"
+    },
+    {
+      "id": "5",
+      "customerName": "kev",
+      "address": "kiambu",
+      "pickupLocation": "Sawa mall",
+      "dropoffLocation": "qwetu usiu",
+      "items": [
+        "books"
+      ],
+      "riderId": "9",
+      "status": "assigned",
+      "createdAt": "2025-10-14T07:18:28.692Z",
+      "updatedAt": "2025-10-14T07:34:18.102Z"
+    },
+    {
+      "id": "5",
+      "customerName": "john",
+      "address": "john122",
+      "pickupLocation": "Thika",
+      "dropoffLocation": "kisii",
+      "items": [
+        "car"
+      ],
+      "riderId": "9",
+      "status": "pending",
+      "createdAt": "2025-10-14T07:34:18.095Z",
+      "updatedAt": "2025-10-14T07:34:18.095Z"
+    },
+    {
+      "id": "6",
+      "customerName": "Mary ",
+      "address": "mary house 56789",
+      "pickupLocation": "Thika road mall",
+      "dropoffLocation": "mary house 56789",
+      "items": [
+        "beauty products"
+      ],
+      "riderId": "7",
+      "status": "assigned",
+      "createdAt": "2025-10-14T07:40:31.448Z",
+      "updatedAt": "2025-10-14T07:40:31.453Z"
+    },
+    {
+      "id": "7",
+      "customerName": "Otieno",
+      "address": "e",
+      "pickupLocation": "w",
+      "dropoffLocation": "e",
+      "items": [
+        "ufbubeu\r\nfnewfnu"
+      ],
+      "riderId": "7",
+      "status": "assigned",
+      "createdAt": "2025-10-14T07:41:31.550Z",
+      "updatedAt": "2025-10-14T07:41:31.556Z"
+    },
+    {
+      "id": "8",
+      "customerName": "Otieno",
+      "address": "jbvh",
+      "pickupLocation": "jbuivy",
+      "dropoffLocation": "jbuivuiv",
+      "items": [
+        "yvyhvyh"
+      ],
+      "riderId": "3",
+      "status": "assigned",
+      "createdAt": "2025-10-14T07:42:34.168Z",
+      "updatedAt": "2025-10-14T07:42:34.173Z"
+    },
+    {
+      "id": "9",
+      "customerName": "jane",
+      "address": "kiambu",
+      "pickupLocation": "Thika road mall",
+      "dropoffLocation": "Garden city mall",
+      "items": [
+        "food\r\nfood"
+      ],
+      "riderId": "9",
+      "status": "assigned",
+      "createdAt": "2025-10-14T07:45:33.087Z",
+      "updatedAt": "2025-10-14T07:45:33.094Z"
+    },
+    {
+      "id": "10",
+      "customerName": "mark",
+      "address": "kilimani 36543",
+      "pickupLocation": "Garden city",
+      "dropoffLocation": "kilimani",
+      "items": [
+        "buigy\r\nFew\r\nfWf\r\nW"
+      ],
+      "riderId": "9",
+      "status": "assigned",
+      "createdAt": "2025-10-14T07:46:30.005Z",
+      "updatedAt": "2025-10-14T07:46:30.013Z"
+    },
+    {
+      "id": "11",
+      "customerName": "Derrick",
+      "address": "mombasa",
+      "pickupLocation": "Nairobi",
+      "dropoffLocation": "Mombasa",
+      "items": [
+        "bike"
+      ],
+      "riderId": "5",
+      "status": "assigned",
+      "createdAt": "2025-10-14T07:47:36.558Z",
+      "updatedAt": "2025-10-14T09:10:34.551Z"
+    },
+    {
+      "id": "12",
+      "customerName": "kev",
+      "address": "usiu",
+      "pickupLocation": "Sawa mall",
+      "dropoffLocation": "kisii",
+      "items": [
+        "Fridge"
+      ],
+      "riderId": "3",
+      "status": "assigned",
+      "createdAt": "2025-10-14T07:50:57.695Z",
+      "updatedAt": "2025-10-14T07:51:31.398Z"
+    },
+    {
+      "id": "13",
+      "customerName": "kev",
+      "address": "wqd",
+      "pickupLocation": "jbyievy",
+      "dropoffLocation": "jbfve",
+      "items": [
+        "jbyvyqvey"
+      ],
+      "riderId": "5",
+      "status": "assigned",
+      "createdAt": "2025-10-14T07:58:23.146Z",
+      "updatedAt": "2025-10-14T07:58:49.455Z"
+    },
+    {
+      "id": "14",
+      "customerName": "liana",
+      "address": "busia ",
+      "pickupLocation": "Nairobi",
+      "dropoffLocation": "busia ",
+      "items": [
+        "peanuts"
+      ],
+      "riderId": "10",
+      "status": "assigned",
+      "createdAt": "2025-10-14T09:23:41.419Z",
+      "updatedAt": "2025-10-14T09:23:41.422Z"
+    },
+    {
+      "id": "15",
+      "customerName": "Grace",
+      "address": "busia border",
+      "pickupLocation": "usiu ",
+      "dropoffLocation": "busia bus",
+      "items": [
+        "shoes"
+      ],
+      "riderId": "11",
+      "status": "completed",
+      "createdAt": "2025-10-14T09:29:05.404Z",
+      "updatedAt": "2025-10-14T09:31:13.983Z"
+    },
+    {
+      "id": "16",
+      "customerName": "james ",
+      "address": "usiu road ",
+      "pickupLocation": "Sawa mall",
+      "dropoffLocation": "kisii",
+      "items": [
+        "farm machine"
+      ],
+      "riderId": "11",
+      "status": "in-progress",
+      "createdAt": "2025-10-14T09:40:58.919Z",
+      "updatedAt": "2025-10-14T09:43:24.688Z"
+    },
+    {
+      "id": "17",
+      "customerName": "Austin",
+      "address": "Mombasa road ",
+      "pickupLocation": "industrial area",
+      "dropoffLocation": "kakamega",
+      "items": [
+        "machine \r\nstationary"
+      ],
+      "riderId": "11",
+      "status": "assigned",
+      "createdAt": "2025-10-14T09:42:34.363Z",
+      "updatedAt": "2025-10-14T09:42:34.368Z"
+    },
+    {
+      "id": "18",
+      "customerName": "Kiduchu",
+      "address": "muthaiga",
+      "pickupLocation": "waiyaki way",
+      "dropoffLocation": "CDB Nairobi",
+      "items": [
+        "vegetables \r\ncereals"
+      ],
+      "riderId": "12",
+      "status": "completed",
+      "createdAt": "2025-10-14T09:46:42.543Z",
+      "updatedAt": "2025-10-14T12:37:41.335Z"
+    },
+    {
+      "id": "19",
+      "customerName": "Dave",
+      "address": "muthaiga",
+      "pickupLocation": "Sawa mall",
+      "dropoffLocation": "leo mall",
+      "items": [
+        "food\r\ndrinks\r\nwater"
+      ],
+      "riderId": "12",
+      "status": "completed",
+      "createdAt": "2025-10-14T10:20:44.351Z",
+      "updatedAt": "2025-10-14T13:52:38.637Z"
+    },
+    {
+      "id": "20",
+      "customerName": "kev",
+      "address": "home address ",
+      "pickupLocation": "home ",
+      "dropoffLocation": "away",
+      "items": [
+        "buu\r\nrfgrg\r\nt"
+      ],
+      "riderId": "12",
+      "status": "in-progress",
+      "createdAt": "2025-10-14T13:28:16.739Z",
+      "updatedAt": "2025-10-14T13:53:09.925Z"
+    }
+  ]
+}

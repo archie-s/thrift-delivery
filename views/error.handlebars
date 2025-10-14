@@ -1,0 +1,22 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-danger text-white">
+                    <h2 class="text-center mb-0">Error</h2>
+                </div>
+                <div class="card-body">
+                    <h3>{{message}}</h3>
+                    {{#if error}}
+                        <div class="mt-4">
+                            <pre class="bg-light p-3 rounded"><code>{{error.stack}}</code></pre>
+                        </div>
+                    {{/if}}
+                    <div class="mt-4 text-center">
+                        <a href="/" class="btn btn-primary">Return Home</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,64 @@
+<div class="container mx-auto px-4 py-6">
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="text-2xl font-bold">Delivery {{order.id}}</h1>
+    <a href="/manager/deliveries" class="text-blue-600">Back to all deliveries</a>
+  </div>
+
+  <div class="bg-white rounded shadow p-6 space-y-3">
+    <div><strong>Customer:</strong> {{order.customerName}}</div>
+    <div><strong>Pickup:</strong> {{order.pickupLocation}}</div>
+    <div><strong>Dropoff:</strong> {{order.dropoffLocation}}</div>
+    <div><strong>Items:</strong>
+      <ul class="list-disc ml-6">
+        {{#each order.items}}
+        <li>{{this}}</li>
+        {{/each}}
+      </ul>
+    </div>
+    <div><strong>Status:</strong> {{order.status}}</div>
+    <div><strong>Rider:</strong> {{#if order.riderId}}{{#if order.riderName}}{{order.riderName}} (ID: {{order.riderId}}){{else}}ID: {{order.riderId}}{{/if}}{{else}}Unassigned{{/if}}</div>
+    <div><strong>Created:</strong> {{formatDate order.createdAt}}</div>
+    <div><strong>Updated:</strong> {{formatDate order.updatedAt}}</div>
+  </div>
+
+  <div class="mt-6 flex space-x-3">
+    {{#unless order.riderId}}
+    <a href="/manager/assign-rider/{{order.id}}" class="bg-green-600 text-white px-4 py-2 rounded">Assign Rider</a>
+    {{/unless}}
+    <button type="button" class="bg-yellow-600 text-white px-4 py-2 rounded" data-open-modal="#cancelModal">Cancel Delivery</button>
+    <button type="button" class="bg-red-600 text-white px-4 py-2 rounded" data-open-modal="#deleteModal">Delete Delivery</button>
+    <a href="/manager/deliveries/add" class="bg-blue-600 text-white px-4 py-2 rounded">Create New</a>
+  </div>
+</div>
+
+<!-- Cancel Modal -->
+<div id="cancelModal" class="fixed inset-0 hidden items-center justify-center bg-black bg-opacity-50 z-50">
+  <div class="bg-white rounded shadow-lg w-full max-w-md p-6">
+    <h2 class="text-xl font-semibold mb-2">Cancel Delivery</h2>
+    <p class="mb-4">Are you sure you want to cancel this delivery?</p>
+    <div class="flex justify-end space-x-2">
+      <button type="button" class="px-4 py-2 rounded border" data-close-modal="#cancelModal">No</button>
+      <form method="POST" action="/manager/deliveries/{{order.id}}/cancel">
+        <button type="submit" class="bg-yellow-600 text-white px-4 py-2 rounded">Yes, Cancel</button>
+      </form>
+    </div>
+  </div>
+  <button class="absolute inset-0 w-full h-full" data-close-modal="#cancelModal" aria-label="Close overlay"></button>
+  </div>
+
+<!-- Delete Modal -->
+<div id="deleteModal" class="fixed inset-0 hidden items-center justify-center bg-black bg-opacity-50 z-50">
+  <div class="bg-white rounded shadow-lg w-full max-w-md p-6">
+    <h2 class="text-xl font-semibold mb-2">Delete Delivery</h2>
+    <p class="mb-4">This action cannot be undone. Delete this delivery?</p>
+    <div class="flex justify-end space-x-2">
+      <button type="button" class="px-4 py-2 rounded border" data-close-modal="#deleteModal">No</button>
+      <form method="POST" action="/manager/deliveries/{{order.id}}/delete">
+        <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded">Yes, Delete</button>
+      </form>
+    </div>
+  </div>
+  <button class="absolute inset-0 w-full h-full" data-close-modal="#deleteModal" aria-label="Close overlay"></button>
+  </div>
+
+

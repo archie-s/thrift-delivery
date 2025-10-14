@@ -1,0 +1,82 @@
+<div class="container mx-auto px-4 py-6">
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="text-2xl font-bold">All Deliveries</h1>
+    <a href="/manager/deliveries/add" class="bg-blue-600 text-white px-4 py-2 rounded">Add Delivery</a>
+  </div>
+
+  <form method="GET" class="mb-6 bg-white p-5 rounded-lg shadow">
+    <div class="flex items-center justify-between mb-3">
+      <h2 class="text-lg font-semibold">Filter Deliveries</h2>
+      <a href="/manager/deliveries" class="text-sm text-blue-600 hover:text-blue-800">Clear</a>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-3">
+      <div class="md:col-span-2">
+        <label class="block text-sm text-gray-600 mb-1">ID</label>
+        <input type="text" name="id" value="{{query.id}}" placeholder="e.g. 12" class="w-full border rounded p-2">
+      </div>
+      <div class="md:col-span-3">
+        <label class="block text-sm text-gray-600 mb-1">Customer</label>
+        <input type="text" name="customer" value="{{query.customer}}" placeholder="Customer name" class="w-full border rounded p-2">
+      </div>
+      <div class="md:col-span-3">
+        <label class="block text-sm text-gray-600 mb-1">Pickup</label>
+        <input type="text" name="pickup" value="{{query.pickup}}" placeholder="Pickup location" class="w-full border rounded p-2">
+      </div>
+      <div class="md:col-span-3">
+        <label class="block text-sm text-gray-600 mb-1">Dropoff</label>
+        <input type="text" name="dropoff" value="{{query.dropoff}}" placeholder="Dropoff location" class="w-full border rounded p-2">
+      </div>
+      <div class="md:col-span-4">
+        <label class="block text-sm text-gray-600 mb-1">Rider</label>
+        <input type="text" name="rider" value="{{query.rider}}" placeholder="Name or ID" class="w-full border rounded p-2">
+      </div>
+      <div class="md:col-span-3">
+        <label class="block text-sm text-gray-600 mb-1">Status</label>
+        <select name="status" class="w-full border rounded p-2">
+          <option value="">Any Status</option>
+          <option value="pending" {{#if (eq query.status 'pending')}}selected{{/if}}>Pending</option>
+          <option value="assigned" {{#if (eq query.status 'assigned')}}selected{{/if}}>Assigned</option>
+          <option value="in-progress" {{#if (eq query.status 'in-progress')}}selected{{/if}}>In Progress</option>
+          <option value="completed" {{#if (eq query.status 'completed')}}selected{{/if}}>Completed</option>
+          <option value="cancelled" {{#if (eq query.status 'cancelled')}}selected{{/if}}>Cancelled</option>
+        </select>
+      </div>
+      <div class="md:col-span-5 flex items-end">
+        <button class="bg-gray-900 hover:bg-gray-800 text-white px-4 py-2 rounded" type="submit">Apply Filters</button>
+      </div>
+    </div>
+  </form>
+
+  <div class="overflow-x-auto bg-white rounded shadow">
+    <table class="min-w-full table-auto">
+      <thead class="bg-gray-50">
+        <tr>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Pickup</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Dropoff</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rider</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+        </tr>
+      </thead>
+      <tbody class="bg-white divide-y divide-gray-200">
+        {{#each orders}}
+        <tr>
+          <td class="px-6 py-4 whitespace-nowrap">{{this.id}}</td>
+          <td class="px-6 py-4 whitespace-nowrap">{{this.customerName}}</td>
+          <td class="px-6 py-4 whitespace-nowrap">{{this.pickupLocation}}</td>
+          <td class="px-6 py-4 whitespace-nowrap">{{this.dropoffLocation}}</td>
+          <td class="px-6 py-4 whitespace-nowrap">{{this.status}}</td>
+          <td class="px-6 py-4 whitespace-nowrap">{{#if this.riderId}}{{#if this.riderName}}{{this.riderName}} (ID: {{this.riderId}}){{else}}ID: {{this.riderId}}{{/if}}{{else}}Unassigned{{/if}}</td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <a href="/manager/deliveries/{{this.id}}" class="text-blue-600 hover:text-blue-900">View</a>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+

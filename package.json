@@ -1,0 +1,23 @@
+{
+  "name": "thrift-delivery",
+  "version": "1.0.0",
+  "description": "A delivery management app for thrift-store owners",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "express-handlebars": "^7.1.2",
+    "bcrypt": "^5.1.1",
+    "connect-flash": "^0.1.1",
+    "tailwindcss": "^3.3.3",
+    "cookie-parser": "^1.4.6"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

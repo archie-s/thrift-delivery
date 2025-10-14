@@ -1,0 +1,62 @@
+<h2 class="text-2xl font-bold mb-4">Riders List</h2>
+
+{{#if error}}
+  <div class="bg-red-100 text-red-700 px-4 py-2 rounded mb-4">{{error}}</div>
+{{/if}}
+
+{{#if success}}
+  <div class="bg-green-100 text-green-700 px-4 py-2 rounded mb-4">{{success}}</div>
+{{/if}}
+
+<table class="min-w-full bg-white shadow rounded">
+  <thead>
+    <tr>
+      <th class="px-6 py-3 text-left">ID</th>
+      <th class="px-6 py-3 text-left">Name</th>
+      <th class="px-6 py-3 text-left">Email</th>
+      <th class="px-6 py-3 text-left">Contact</th>
+      <th class="px-6 py-3 text-left">Status</th>
+      <th class="px-6 py-3 text-left">Created At</th>
+      <th class="px-6 py-3 text-left">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each riders}}
+      <tr class="border-t">
+        <td class="px-6 py-4">{{id}}</td>
+        <td class="px-6 py-4">{{name}}</td>
+        <td class="px-6 py-4">{{email}}</td>
+        <td class="px-6 py-4">{{contact}}</td>
+        <td class="px-6 py-4">
+          <span class="px-2 py-1 rounded-full {{#if (eq status 'available')}}bg-green-100 text-green-700{{else}}bg-yellow-100 text-yellow-700{{/if}}">
+            {{status}}
+          </span>
+        </td>
+        <td class="px-6 py-4">{{createdAt}}</td>
+        <td class="px-6 py-4">
+          <button type="button" class="bg-red-600 text-white px-3 py-1 rounded" data-open-modal="#deleteRider-{{id}}">Delete</button>
+          
+          <!-- Delete Rider Modal -->
+          <div id="deleteRider-{{id}}" class="fixed inset-0 hidden items-center justify-center bg-black bg-opacity-50 z-50">
+            <div class="bg-white rounded shadow-lg w-full max-w-md p-6">
+              <h2 class="text-xl font-semibold mb-2">Delete Rider</h2>
+              <p class="mb-4">Are you sure you want to delete rider <strong>{{name}}</strong>?</p>
+              <div class="flex justify-end space-x-2">
+                <button type="button" class="px-4 py-2 rounded border" data-close-modal="#deleteRider-{{id}}">Cancel</button>
+                <form method="POST" action="/manager/riders/{{id}}/delete">
+                  <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded">Yes, Delete</button>
+                </form>
+              </div>
+            </div>
+            <button class="absolute inset-0 w-full h-full" data-close-modal="#deleteRider-{{id}}" aria-label="Close overlay"></button>
+          </div>
+        </td>
+      </tr>
+    {{/each}}
+    {{#unless riders}}
+      <tr>
+        <td colspan="6" class="px-6 py-4 text-center text-gray-500">No riders found.</td>
+      </tr>
+    {{/unless}}
+  </tbody>
+</table>

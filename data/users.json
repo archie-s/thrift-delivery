@@ -1,0 +1,106 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Joyce",
+      "email": "manager@test.com",
+      "password": "$2b$10$hJ.G4gQ5iGkudbAq7XbQJOGIcnRyS.zF7.2uqIbbfxvDkk865g1OS",
+      "role": "manager",
+      "createdAt": "2025-10-05T16:52:47.371Z"
+    },
+    {
+      "id": "3",
+      "name": "Christine Mwangi",
+      "email": "christinemwangi5725@gmail.com",
+      "password": "$2b$10$QTYe2ckd3jVZecDwPemlS.ouHt5VkQAeXFY8ucI4w6KOGaYVxfoe2",
+      "role": "rider",
+      "createdAt": "2025-10-10T21:34:25.818Z"
+    },
+    {
+      "id": "4",
+      "name": "Peris Mwangi",
+      "email": "chrissymwangi254@gmail.com",
+      "password": "$2b$10$DDwDG6MucUBQfploHiBzP.aP.FxX9Nn0EOFN4X1gk.wSOPaI/u12W",
+      "role": "manager",
+      "createdAt": "2025-10-10T22:19:44.941Z"
+    },
+    {
+      "id": "5",
+      "name": "Sabrina",
+      "email": "chricostorytime254@gmail.com",
+      "contact": "+25473098648",
+      "role": "rider",
+      "status": "available",
+      "createdAt": "2025-10-10T23:11:49.107Z"
+    },
+    {
+      "id": "6",
+      "name": "kev",
+      "email": "kev@gmail.com",
+      "password": "$2b$10$tLCKC4L1Ur/jBTg.Ir2kUuJS6yGqRQiZKI6ngOHvu2DXukg8pHRPy",
+      "role": "manager",
+      "createdAt": "2025-10-13T18:03:06.635Z"
+    },
+    {
+      "id": "7",
+      "name": "john",
+      "email": "john@gmail",
+      "contact": "123456789",
+      "role": "rider",
+      "status": "available",
+      "createdAt": "2025-10-13T18:05:08.705Z"
+    },
+    {
+      "id": "8",
+      "name": "Kevin Githinji",
+      "email": "githinji@gmail.com",
+      "password": "$2b$10$XnO3tzzi55LUCZTxP.qfVuIRa.ARhAhN0uBNGZyczsu3TCqw21GD6",
+      "role": "manager",
+      "createdAt": "2025-10-14T06:25:33.197Z"
+    },
+    {
+      "id": "9",
+      "name": "Kevin Githinji",
+      "email": "kevinkihara@gmail.com",
+      "contact": "9874563210",
+      "role": "rider",
+      "status": "available",
+      "createdAt": "2025-10-14T06:26:15.717Z"
+    },
+    {
+      "id": "10",
+      "name": "Kevin Githinji",
+      "email": "kevin@gmail.com",
+      "password": "$2b$10$5zBEfKycivRbjC06SaF0y.AXtT7oNa6eOJ9ZA0I.UvJB1CmyOaKCq",
+      "role": "rider",
+      "createdAt": "2025-10-14T07:10:54.666Z"
+    },
+    {
+      "id": "10",
+      "name": "keza",
+      "email": "keza@gmail.com",
+      "contact": "11111111",
+      "role": "rider",
+      "status": "available",
+      "createdAt": "2025-10-14T09:18:40.009Z"
+    },
+    {
+      "id": "11",
+      "name": "liana",
+      "email": "liana@gmail.com",
+      "contact": "01114688",
+      "role": "rider",
+      "status": "available",
+      "password": "$2b$10$pP79YDsnipViEjlJET1GE.liIWcvyWslVZZnxkKHrXk6zsAhMgAey",
+      "createdAt": "2025-10-14T09:27:18.983Z"
+    },
+    {
+      "id": "12",
+      "name": "maina",
+      "email": "maina@gmail.com",
+      "password": "$2b$10$ZzIuI5zUe3uR3..emdirgu1Ojc1YiaNy7QZ51Py1CMSymX8PHUDJm",
+      "role": "rider",
+      "createdAt": "2025-10-14T10:04:18.535Z"
+    }
+  ]
+}

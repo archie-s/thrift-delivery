@@ -1,0 +1,35 @@
+<div class="container mx-auto px-4 py-6">
+  <h1 class="text-2xl font-bold mb-4">Assign Rider</h1>
+
+  {{#if error}}
+    <div class="bg-red-100 text-red-700 p-3 mb-4 rounded">{{error}}</div>
+  {{/if}}
+  {{#if success}}
+    <div class="bg-green-100 text-green-700 p-3 mb-4 rounded">{{success}}</div>
+  {{/if}}
+
+  <div class="mb-6 p-4 border rounded">
+    <div><strong>Order ID:</strong> {{order.id}}</div>
+    <div><strong>Customer:</strong> {{order.customerName}}</div>
+    <div><strong>Pickup:</strong> {{order.pickupLocation}}</div>
+    <div><strong>Dropoff:</strong> {{order.dropoffLocation}}</div>
+  </div>
+
+  <form method="POST" action="/manager/assign-rider/{{order.id}}" class="space-y-4">
+    <div>
+      <label class="block font-medium mb-1">Select Rider</label>
+      <select name="riderId" class="w-full border rounded p-2" required>
+        <option value="">-- Choose Rider --</option>
+        {{#each riders}}
+          <option value="{{this.id}}">{{this.name}}</option>
+        {{/each}}
+      </select>
+    </div>
+    <div>
+      <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Assign</button>
+      <a href="/manager/dashboard" class="ml-2 text-gray-600">Cancel</a>
+    </div>
+  </form>
+</div>
+
+

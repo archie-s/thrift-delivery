@@ -1,0 +1,27 @@
+<div class="flex justify-center mt-8">
+  <div class="bg-white rounded-lg shadow-lg w-full max-w-md p-8">
+    <h2 class="text-2xl font-bold mb-4 text-gray-800">Rider Profile</h2>
+    <div class="space-y-3">
+      <p><span class="font-semibold text-gray-700">Name:</span> {{user.name}}</p>
+      <p><span class="font-semibold text-gray-700">Email:</span> {{user.email}}</p>
+      <p><span class="font-semibold text-gray-700">Role:</span> {{user.role}}</p>
+      <p><span class="font-semibold text-gray-700">Account Created:</span> {{formatDate user.createdAt}}</p>
+    </div>
+    {{#if user.assignedDeliveries}}
+      <h3 class="mt-6 text-lg font-semibold">Your Deliveries</h3>
+      <ul class="list-disc pl-5">
+        {{#each user.assignedDeliveries}}
+          <li class="mb-2 border-b py-2">
+            <span class="text-gray-600">Order ID:</span> {{this.id}}<br>
+            <span class="text-gray-600">Status:</span> {{this.status}}<br>
+            <span class="text-gray-600">Address:</span> {{this.address}}
+          </li>
+        {{/each}}
+      </ul>
+    {{else}}
+      <p class="mt-4 text-gray-500">You have no deliveries assigned yet.</p>
+    {{/if}}
+    <a class="block bg-blue-600 text-white rounded px-4 py-2 mt-6 font-medium text-center hover:bg-blue-700" href="/auth/profile/edit">Edit Profile</a>
+  </div>
+</div>
+
