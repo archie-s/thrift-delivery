@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const managerController = require('../controllers/managerController');
 const authMiddleware = require('../middleware/authMiddleware');
+const { validateDeliveryForm, validateRiderForm } = require('../middleware/validation');
 
 // Middleware to check if user is a manager
 const isManager = (req, res, next) => {
