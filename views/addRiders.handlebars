@@ -32,3 +32,26 @@
   </div>
   <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Add Rider</button>
 </form>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.querySelector('form[action="/manager/riders/add"]');
+  if (!form) return;
+  form.addEventListener('submit', (e) => {
+    const pw = form.querySelector('input[name="password"]').value || '';
+    const cpw = form.querySelector('input[name="confirmPassword"]').value || '';
+    const contact = (form.querySelector('input[name="contact"]').value || '').replace(/\D/g, '');
+    if (pw !== cpw) {
+      e.preventDefault();
+      alert('Passwords do not match');
+      return false;
+    }
+    if (contact.length < 10 || contact.length > 12) {
+      e.preventDefault();
+      alert('Contact number must be 10 to 12 digits');
+      return false;
+    }
+    return true;
+  });
+});
+</script>

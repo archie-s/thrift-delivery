@@ -61,19 +61,24 @@ exports.renderAddDelivery = async (req, res) => {
 // Handle add delivery submission
 exports.addDelivery = async (req, res) => {
     try {
-        const { customerName, address, pickupLocation, dropoffLocation, items, riderId } = req.body;
+        const { customerName, address, pickupLocation, dropoffLocation, riderId } = req.body;
+        // items[] inputs come in as an array
+        let items = req.body['items[]'] || req.body.items;
 
-        if (!customerName || !address || !pickupLocation || !dropoffLocation || !items) {
+        // Normalize items to array of strings
+        if (!items) {
             req.flash('error', 'Customer name, address, pickup, dropoff and items are required');
             return res.redirect('/manager/deliveries/add');
         }
+        if (!Array.isArray(items)) {
+            // Could be single value or comma-separated
+            items = String(items).trim().startsWith('[') ? JSON.parse(items) : String(items).split(',').map(s => s.trim()).filter(Boolean);
+        } else {
+            items = items.map(i => String(i).trim()).filter(Boolean);
+        }
 
-        // Support comma-separated items or JSON array
-        let parsedItems;
-        try {
-            parsedItems = items.trim().startsWith('[') ? JSON.parse(items) : items.split(',').map(s => s.trim()).filter(Boolean);
-        } catch (_) {
-            req.flash('error', 'Items must be a comma-separated list or a valid JSON array');
+        if (!customerName || !address || !pickupLocation || !dropoffLocation || items.length === 0) {
+            req.flash('error', 'Customer name, address, pickup, dropoff and items are required');
             return res.redirect('/manager/deliveries/add');
         }
 
@@ -82,7 +87,7 @@ exports.addDelivery = async (req, res) => {
             address,
             pickupLocation,
             dropoffLocation,
-            items: parsedItems,
+            items,
             riderId: riderId || null
         });
 
@@ -175,10 +180,18 @@ exports.viewDelivery = async (req, res) => {
 exports.cancelDelivery = async (req, res) => {
     try {
         const orderId = req.params.orderId;
+        // Verify order exists
+        const orders = await Order.getAll();
+        const order = orders.find(o => o.id === orderId);
+        if (!order) {
+            req.flash('error', 'Order not found');
+            return res.redirect('/manager/deliveries');
+        }
         await Order.cancel(orderId);
         req.flash('success', 'Delivery cancelled');
         res.redirect('/manager/dashboard');
     } catch (error) {
+        console.error('Cancel delivery error:', error);
         req.flash('error', 'Unable to cancel delivery');
         res.redirect(`/manager/deliveries/${req.params.orderId}`);
     }
@@ -187,10 +200,18 @@ exports.cancelDelivery = async (req, res) => {
 exports.deleteDelivery = async (req, res) => {
     try {
         const orderId = req.params.orderId;
+        // Verify order exists
+        const orders = await Order.getAll();
+        const order = orders.find(o => o.id === orderId);
+        if (!order) {
+            req.flash('error', 'Order not found');
+            return res.redirect('/manager/deliveries');
+        }
         await Order.delete(orderId);
         req.flash('success', 'Delivery deleted');
         res.redirect('/manager/dashboard');
     } catch (error) {
+        console.error('Delete delivery error:', error);
         req.flash('error', 'Unable to delete delivery');
         res.redirect(`/manager/deliveries/${req.params.orderId}`);
     }
@@ -293,6 +314,13 @@ exports.addRider = async (req, res) => {
         req.flash('error', 'Passwords do not match');
         return res.redirect('/manager/riders/add');
     }
+
+    // Validate contact: 10-12 digits
+    const contactDigits = String(contact).replace(/\D/g, '');
+    if (contactDigits.length < 10 || contactDigits.length > 12) {
+        req.flash('error', 'Contact number must be 10 to 12 digits');
+        return res.redirect('/manager/riders/add');
+    }
     try {
         // Read current users
         const data = await readUsersFile(); // Or your riders JSON file
@@ -306,10 +334,11 @@ exports.addRider = async (req, res) => {
             id: String(data.users.length + 1),
             name,
             email,
-            contact,
+            contact: contactDigits,
             role: 'rider',
             status: 'available',
             password: hashedPassword,
+            mustResetPassword: true,
             createdAt: new Date().toISOString(),
         };
         data.users.push(newRider);
@@ -344,16 +373,39 @@ exports.deleteRider = async (req, res) => {
         const riderId = req.params.riderId;
         const data = await readUsersFile();
         const before = data.users.length;
-        data.users = data.users.filter(u => !(u.role === 'rider' && u.id === riderId));
+
+        // Remove any user matching the rider id and role 'rider'
+        data.users = data.users.filter(u => !(u.role === 'rider' && String(u.id) === String(riderId)));
+
         if (data.users.length === before) {
-            req.flash('error', 'Rider not found');
+            req.flash('error', `Rider with id ${riderId} not found`);
             return res.redirect('/manager/riders');
         }
+
+        // Write updated users file
         await writeUsersFile(data);
+
+        // Re-read to verify persistence
+        const verify = await readUsersFile();
+        const stillExists = verify.users.some(u => u.role === 'rider' && String(u.id) === String(riderId));
+        if (stillExists) {
+            console.error(`Failed to remove rider ${riderId} from users.json`);
+            req.flash('error', 'Failed to delete rider (could not persist change)');
+            return res.redirect('/manager/riders');
+        }
+
         req.flash('success', 'Rider deleted');
-        res.redirect('/manager/riders');
+        // Save session to ensure flash and session persist before redirect
+        return req.session.save(err => {
+            if (err) console.error('Session save error after deleting rider:', err);
+            return res.redirect('/manager/riders');
+        });
     } catch (error) {
+        console.error('Delete rider error:', error);
         req.flash('error', 'Failed to delete rider');
-        res.redirect('/manager/riders');
+        return req.session.save(err => {
+            if (err) console.error('Session save error on failure to delete rider:', err);
+            return res.redirect('/manager/riders');
+        });
     }
 };

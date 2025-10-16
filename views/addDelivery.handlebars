@@ -32,7 +32,15 @@
 
     <div>
       <label class="block font-medium mb-1">Items</label>
-      <textarea name="items" class="w-full border rounded p-2" rows="3" placeholder='Comma separated or JSON array ["item1","item2"]' required></textarea>
+      <div id="itemsList" class="space-y-2">
+        <div class="flex space-x-2">
+          <input type="text" name="items[]" class="w-full border rounded p-2" placeholder="Item description" required />
+          <button type="button" class="remove-item bg-red-500 text-white px-3 rounded">-</button>
+        </div>
+      </div>
+      <div class="mt-2">
+        <button id="addItemBtn" type="button" class="bg-green-600 text-white px-3 py-1 rounded">Add item</button>
+      </div>
     </div>
 
     <div>
@@ -50,5 +58,31 @@
     </div>
   </form>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const itemsList = document.getElementById('itemsList');
+  const addItemBtn = document.getElementById('addItemBtn');
+
+  if (!itemsList || !addItemBtn) return;
+
+  addItemBtn.addEventListener('click', () => {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'flex space-x-2';
+    wrapper.innerHTML = `
+      <input type="text" name="items[]" class="w-full border rounded p-2" placeholder="Item description" required />
+      <button type="button" class="remove-item bg-red-500 text-white px-3 rounded">-</button>
+    `;
+    itemsList.appendChild(wrapper);
+  });
+
+  itemsList.addEventListener('click', (e) => {
+    if (e.target && e.target.classList.contains('remove-item')) {
+      const row = e.target.closest('div.flex');
+      if (row) row.remove();
+    }
+  });
+});
+</script>
 
 

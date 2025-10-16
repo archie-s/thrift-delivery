@@ -9,14 +9,6 @@
       "createdAt": "2025-10-05T16:52:47.371Z"
     },
     {
-      "id": "3",
-      "name": "Christine Mwangi",
-      "email": "christinemwangi5725@gmail.com",
-      "password": "$2b$10$QTYe2ckd3jVZecDwPemlS.ouHt5VkQAeXFY8ucI4w6KOGaYVxfoe2",
-      "role": "rider",
-      "createdAt": "2025-10-10T21:34:25.818Z"
-    },
-    {
       "id": "4",
       "name": "Peris Mwangi",
       "email": "chrissymwangi254@gmail.com",
@@ -59,32 +51,6 @@
       "createdAt": "2025-10-14T06:25:33.197Z"
     },
     {
-      "id": "9",
-      "name": "Kevin Githinji",
-      "email": "kevinkihara@gmail.com",
-      "contact": "9874563210",
-      "role": "rider",
-      "status": "available",
-      "createdAt": "2025-10-14T06:26:15.717Z"
-    },
-    {
-      "id": "10",
-      "name": "Kevin Githinji",
-      "email": "kevin@gmail.com",
-      "password": "$2b$10$5zBEfKycivRbjC06SaF0y.AXtT7oNa6eOJ9ZA0I.UvJB1CmyOaKCq",
-      "role": "rider",
-      "createdAt": "2025-10-14T07:10:54.666Z"
-    },
-    {
-      "id": "10",
-      "name": "keza",
-      "email": "keza@gmail.com",
-      "contact": "11111111",
-      "role": "rider",
-      "status": "available",
-      "createdAt": "2025-10-14T09:18:40.009Z"
-    },
-    {
       "id": "11",
       "name": "liana",
       "email": "liana@gmail.com",
@@ -95,12 +61,47 @@
       "createdAt": "2025-10-14T09:27:18.983Z"
     },
     {
-      "id": "12",
-      "name": "maina",
-      "email": "maina@gmail.com",
-      "password": "$2b$10$ZzIuI5zUe3uR3..emdirgu1Ojc1YiaNy7QZ51Py1CMSymX8PHUDJm",
+      "id": "13",
+      "name": "philip",
+      "email": "philip@test.com",
+      "password": "$2b$10$pCWKzrYxhJ4pz9xLC//SNOxNEN1uXo212EvaSPeoF5XNPo25wQKb2",
+      "role": "manager",
+      "createdAt": "2025-10-15T18:27:22.197Z"
+    },
+    {
+      "id": "15",
+      "name": "Tester Manager",
+      "email": "testmgr1760558054@example.com",
+      "password": "$2b$10$62H0GNrOVUvlPQvEpuBxUOdflLeMoE.2uB6vPjyJxEERIwfuWR8di",
+      "role": "manager",
+      "createdAt": "2025-10-15T19:54:15.001Z"
+    },
+    {
+      "id": "10",
+      "name": "Archie Rider",
+      "email": "riderarchie@test.com",
+      "password": "$2b$10$99mONVuuClbzUO.7Y8q3hOXJvSa2xibeaaQguaHC.K3LpFFKW8ple",
       "role": "rider",
-      "createdAt": "2025-10-14T10:04:18.535Z"
+      "createdAt": "2025-10-15T23:02:54.038Z"
+    },
+    {
+      "id": "11",
+      "name": "Anthony Bill",
+      "email": "anthonybill@test.com",
+      "password": "$2b$10$NHN79yhHYbOG9WvaEQ103uLFwlNMTxQSmhwn3IyWXp8UvKam347SK",
+      "role": "manager",
+      "createdAt": "2025-10-15T23:07:19.488Z"
+    },
+    {
+      "id": "12",
+      "name": "George",
+      "email": "george@thriftdelivery.com",
+      "contact": "0722345678",
+      "role": "rider",
+      "status": "available",
+      "password": "$2b$10$Ew7sfQwli3aPc07XwoOsKO0TWt3oI1aswa1q0fx.CBoyqP.ngd2Qm",
+      "mustResetPassword": false,
+      "createdAt": "2025-10-16T12:06:31.026Z"
     }
   ]
 }

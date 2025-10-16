@@ -1,48 +1,6 @@
 {
   "orders": [
     {
-      "id": "2",
-      "customerName": "kev",
-      "address": "usiu-road ",
-      "pickupLocation": "Sawa mall",
-      "dropoffLocation": "qwetu usiu",
-      "items": [
-        "laptop \r\nphone\r\nfood"
-      ],
-      "riderId": "3",
-      "status": "assigned",
-      "createdAt": "2025-10-14T07:06:36.981Z",
-      "updatedAt": "2025-10-14T07:25:12.364Z"
-    },
-    {
-      "id": "3",
-      "customerName": "Otieno",
-      "address": "kilimani 1234",
-      "pickupLocation": "kisumu",
-      "dropoffLocation": "nairobi",
-      "items": [
-        "hhurhughuhru"
-      ],
-      "riderId": "2",
-      "status": "assigned",
-      "createdAt": "2025-10-14T07:12:21.905Z",
-      "updatedAt": "2025-10-14T07:12:21.913Z"
-    },
-    {
-      "id": "4",
-      "customerName": "kamau",
-      "address": "kiambu",
-      "pickupLocation": "kiambu",
-      "dropoffLocation": "meru",
-      "items": [
-        "medication"
-      ],
-      "riderId": "3",
-      "status": "assigned",
-      "createdAt": "2025-10-14T07:16:01.506Z",
-      "updatedAt": "2025-10-14T07:16:01.510Z"
-    },
-    {
       "id": "5",
       "customerName": "kev",
       "address": "kiambu",
@@ -97,20 +55,6 @@
       "status": "assigned",
       "createdAt": "2025-10-14T07:41:31.550Z",
       "updatedAt": "2025-10-14T07:41:31.556Z"
-    },
-    {
-      "id": "8",
-      "customerName": "Otieno",
-      "address": "jbvh",
-      "pickupLocation": "jbuivy",
-      "dropoffLocation": "jbuivuiv",
-      "items": [
-        "yvyhvyh"
-      ],
-      "riderId": "3",
-      "status": "assigned",
-      "createdAt": "2025-10-14T07:42:34.168Z",
-      "updatedAt": "2025-10-14T07:42:34.173Z"
     },
     {
       "id": "9",
@@ -192,9 +136,9 @@
         "peanuts"
       ],
       "riderId": "10",
-      "status": "assigned",
+      "status": "completed",
       "createdAt": "2025-10-14T09:23:41.419Z",
-      "updatedAt": "2025-10-14T09:23:41.422Z"
+      "updatedAt": "2025-10-15T23:05:06.850Z"
     },
     {
       "id": "15",
@@ -247,10 +191,10 @@
       "items": [
         "vegetables \r\ncereals"
       ],
-      "riderId": "12",
-      "status": "completed",
+      "riderId": "5",
+      "status": "assigned",
       "createdAt": "2025-10-14T09:46:42.543Z",
-      "updatedAt": "2025-10-14T12:37:41.335Z"
+      "updatedAt": "2025-10-15T23:09:27.504Z"
     },
     {
       "id": "19",
@@ -279,6 +223,36 @@
       "status": "in-progress",
       "createdAt": "2025-10-14T13:28:16.739Z",
       "updatedAt": "2025-10-14T13:53:09.925Z"
+    },
+    {
+      "id": "21",
+      "customerName": "yfjhvg",
+      "address": "hdcfgcv",
+      "pickupLocation": "gjcvnb ",
+      "dropoffLocation": "uyiktgjyfh",
+      "items": [
+        "ftyjfyh",
+        "tdhgc",
+        "yufjygh"
+      ],
+      "riderId": "5",
+      "status": "assigned",
+      "createdAt": "2025-10-15T22:52:32.685Z",
+      "updatedAt": "2025-10-15T22:52:32.686Z"
+    },
+    {
+      "id": "18",
+      "customerName": "Jane Awino",
+      "address": "Qwetu Aberdare Heights 2",
+      "pickupLocation": "Dropoff centre CBD",
+      "dropoffLocation": "Qwetu Aberdare Heights 2",
+      "items": [
+        "1 bale of clothes"
+      ],
+      "riderId": "5",
+      "status": "pending",
+      "createdAt": "2025-10-15T23:09:27.502Z",
+      "updatedAt": "2025-10-15T23:09:27.502Z"
     }
   ]
 }

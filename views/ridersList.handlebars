@@ -28,9 +28,11 @@
         <td class="px-6 py-4">{{email}}</td>
         <td class="px-6 py-4">{{contact}}</td>
         <td class="px-6 py-4">
-          <span class="px-2 py-1 rounded-full {{#if (eq status 'available')}}bg-green-100 text-green-700{{else}}bg-yellow-100 text-yellow-700{{/if}}">
-            {{status}}
-          </span>
+          {{#if (eq status 'available')}}
+            <span class="px-2 py-1 rounded-full bg-green-100 text-green-700">Available</span>
+          {{else}}
+            <span class="px-2 py-1 rounded-full bg-yellow-100 text-yellow-700">Not available</span>
+          {{/if}}
         </td>
         <td class="px-6 py-4">{{createdAt}}</td>
         <td class="px-6 py-4">
@@ -38,7 +40,7 @@
           
           <!-- Delete Rider Modal -->
           <div id="deleteRider-{{id}}" class="fixed inset-0 hidden items-center justify-center bg-black bg-opacity-50 z-50">
-            <div class="bg-white rounded shadow-lg w-full max-w-md p-6">
+            <div class="bg-white rounded shadow-lg w-full max-w-md p-6 relative z-20">
               <h2 class="text-xl font-semibold mb-2">Delete Rider</h2>
               <p class="mb-4">Are you sure you want to delete rider <strong>{{name}}</strong>?</p>
               <div class="flex justify-end space-x-2">
@@ -48,7 +50,6 @@
                 </form>
               </div>
             </div>
-            <button class="absolute inset-0 w-full h-full" data-close-modal="#deleteRider-{{id}}" aria-label="Close overlay"></button>
           </div>
         </td>
       </tr>

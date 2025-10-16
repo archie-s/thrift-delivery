@@ -27,24 +27,46 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Session configuration
 app.use(session({
+    name: 'thrift.sid',
     secret: 'your-secret-key',
-    resave: false,
+    resave: true, // ensure session is saved even if unmodified to avoid race conditions in dev
     saveUninitialized: false,
-    cookie: { 
+    rolling: true, // refresh cookie on every response to keep session alive during repeated requests
+    cookie: {
         secure: process.env.NODE_ENV === 'production',
-        maxAge: 24 * 60 * 60 * 1000 // 24 hours
+        maxAge: 24 * 60 * 60 * 1000, // 24 hours
+        sameSite: 'lax'
     }
 }));
 
 // Flash messages
 app.use(flash());
 
-// Make user data available to all templates
+// Make user data and current year available to all templates
 app.use((req, res, next) => {
     res.locals.user = req.session.user || null;
-    res.locals.error = req.flash('error');
+    // Use first flash message if present so templates render cleanly
+    const errorFlash = req.flash('error');
+    const successFlash = req.flash('success');
+    res.locals.error = Array.isArray(errorFlash) ? (errorFlash[0] || null) : errorFlash;
+    res.locals.success = Array.isArray(successFlash) ? (successFlash[0] || null) : successFlash;
+    res.locals.year = new Date().getFullYear();
     next();
 });
+
+// Development-only session debug middleware
+if (process.env.NODE_ENV !== 'production') {
+    app.use((req, res, next) => {
+        try {
+            const sessionId = req.sessionID;
+            const user = req.session ? req.session.user : null;
+            console.debug(`[SESSION DEBUG] ${req.method} ${req.originalUrl} - sessionID=${sessionId} user=${user ? user.email : 'null'}`);
+        } catch (e) {
+            console.debug('[SESSION DEBUG] error reading session', e);
+        }
+        next();
+    });
+}
 
 // Routes
 app.use('/', require('./routes/index'));

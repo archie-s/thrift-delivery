@@ -24,6 +24,10 @@ router.get('/register', authController.renderRegister);
 // Registration post
 router.post('/register', authController.register);
 
+// Reset password (for accounts that require initial reset)
+router.get('/reset-password', authController.renderResetPassword);
+router.post('/reset-password', authController.resetPassword);
+
 //profile one 
 router.get('/profile', authMiddleware, authController.renderProfile);
 

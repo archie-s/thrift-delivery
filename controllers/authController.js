@@ -31,15 +31,31 @@ exports.login = async (req, res) => {
     }
     
     try {
-        const data = await fs.readFile(usersFile, 'utf8');
-        const users = JSON.parse(data).users;
+        const { readUsersFile } = require('../utils/fileHandler');
+        const data = await readUsersFile();
+        const users = data.users || [];
         const user = users.find(u => u.email === email);
-        
-        if (!user || !(await bcrypt.compare(password, user.password))) {
+
+        if (!user) {
+            // Don't reveal whether the email exists — generic message
             req.flash('error', 'Invalid email or password');
             return res.redirect('/auth/login');
         }
-        
+
+        const passwordMatch = await bcrypt.compare(password, user.password || '');
+        if (!passwordMatch) {
+            req.flash('error', 'Invalid email or password');
+            return res.redirect('/auth/login');
+        }
+
+        // If the account requires a password reset, don't set full session and redirect to reset page
+        if (user.mustResetPassword) {
+            // store a temporary id in session to allow reset
+            req.session.resetUserId = user.id;
+            return res.redirect('/auth/reset-password');
+        }
+
+        // Set session and ensure it's saved before redirecting to avoid a race
         req.session.user = {
             id: user.id,
             email: user.email,
@@ -47,11 +63,15 @@ exports.login = async (req, res) => {
             name: user.name
         };
 
-        if (user.role === 'manager') {
-            return res.redirect('/manager/dashboard');
-        } else {
-            return res.redirect('/rider/dashboard');
-        }
+        // Save session to guarantee the cookie and session store are updated
+        return req.session.save(err => {
+            if (err) console.error('Session save error after login:', err);
+            if (user.role === 'manager') {
+                return res.redirect('/manager/dashboard');
+            } else {
+                return res.redirect('/rider/dashboard');
+            }
+        });
     } catch (error) {
         req.flash('error', 'An error occurred during login');
         return res.redirect('/auth/login');
@@ -143,21 +163,9 @@ exports.register = async (req, res) => {
         // Save to file
         await writeUsersFile(data);
 
-        // Set session and redirect
-        req.session.user = {
-            id: newUser.id,
-            name: newUser.name,
-            email: newUser.email,
-            role: newUser.role
-        };
-
-        req.flash('success', 'Account created successfully');
-        
-        if (role === 'manager') {
-            res.redirect('/manager/dashboard');
-        } else {
-            res.redirect('/rider/dashboard');
-        }
+        // Don't auto-login after registration; require explicit login
+        req.flash('success', 'Account created successfully. Please log in.');
+        return res.redirect('/auth/login');
     } catch (error) {
         console.error('Registration error:', error);
         req.flash('error', 'An error occurred during registration');
@@ -253,5 +261,56 @@ exports.updateProfile = async (req, res) => {
     } catch (error) {
         req.flash('error', 'An error occurred updating profile');
         res.redirect('/auth/profile/edit');
+    }
+};
+
+// Render reset password form (for users created by manager)
+exports.renderResetPassword = async (req, res) => {
+    const resetUserId = req.session.resetUserId;
+    if (!resetUserId) {
+        req.flash('error', 'No password reset in progress');
+        return res.redirect('/auth/login');
+    }
+    res.render('resetPassword', { title: 'Reset Password', error: req.flash('error'), success: req.flash('success') });
+};
+
+exports.resetPassword = async (req, res) => {
+    const { newPassword, confirmPassword } = req.body;
+    const resetUserId = req.session.resetUserId;
+    if (!resetUserId) {
+        req.flash('error', 'No password reset in progress');
+        return res.redirect('/auth/login');
+    }
+    if (!newPassword || !confirmPassword) {
+        req.flash('error', 'All fields are required');
+        return res.redirect('/auth/reset-password');
+    }
+    if (newPassword !== confirmPassword) {
+        req.flash('error', 'Passwords do not match');
+        return res.redirect('/auth/reset-password');
+    }
+    try {
+        const { readUsersFile, writeUsersFile } = require('../utils/fileHandler');
+        const data = await readUsersFile();
+        const user = data.users.find(u => u.id === resetUserId);
+        if (!user) {
+            req.flash('error', 'User not found');
+            return res.redirect('/auth/login');
+        }
+        user.password = await bcrypt.hash(newPassword, 10);
+        user.mustResetPassword = false;
+        await writeUsersFile(data);
+        // Clean up reset session key
+        delete req.session.resetUserId;
+        // Store success flash then save session before redirecting so flash persists
+        req.flash('success', 'Password reset successful. Please log in.');
+        return req.session.save(err => {
+            if (err) console.error('Session save error after password reset:', err);
+            return res.redirect('/auth/login');
+        });
+    } catch (error) {
+        console.error('Reset password error:', error);
+        req.flash('error', 'Failed to reset password');
+        return res.redirect('/auth/reset-password');
     }
 };

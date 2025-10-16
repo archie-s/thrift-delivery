@@ -80,3 +80,24 @@
         </div>
     </form>
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.querySelector('form[action="/auth/register"]');
+    if (!form) return;
+    form.addEventListener('submit', (e) => {
+        const pw = form.querySelector('input[name="password"]').value || '';
+        const cpw = form.querySelector('input[name="confirmPassword"]').value || '';
+        if (pw !== cpw) {
+            e.preventDefault();
+            alert('Passwords do not match');
+            return false;
+        }
+        if (pw.length < 8) {
+            e.preventDefault();
+            alert('Password must be at least 8 characters');
+            return false;
+        }
+        return true;
+    });
+});
+</script>
