@@ -61,7 +61,7 @@ exports.renderAddDelivery = async (req, res) => {
 // Handle add delivery submission
 exports.addDelivery = async (req, res) => {
     try {
-        const { customerName, address, pickupLocation, dropoffLocation, riderId } = req.body;
+    const { customerName, customerPhone, address, pickupLocation, dropoffLocation, riderId } = req.body;
         // items[] inputs come in as an array
         let items = req.body['items[]'] || req.body.items;
 
@@ -84,6 +84,7 @@ exports.addDelivery = async (req, res) => {
 
         const newOrder = await Order.create({
             customerName,
+            customerPhone,
             address,
             pickupLocation,
             dropoffLocation,
