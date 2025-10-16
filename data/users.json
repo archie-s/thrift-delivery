@@ -102,6 +102,14 @@
       "password": "$2b$10$Ew7sfQwli3aPc07XwoOsKO0TWt3oI1aswa1q0fx.CBoyqP.ngd2Qm",
       "mustResetPassword": false,
       "createdAt": "2025-10-16T12:06:31.026Z"
+    },
+    {
+      "id": "13",
+      "name": "Lenny Mark",
+      "email": "lennymark123@gmail.com",
+      "password": "$2b$10$k7jp41NtfyVcgyoPAleZ3eEpVPW6ocWxo9aCNCxEcVdkov3imUAEK",
+      "role": "rider",
+      "createdAt": "2025-10-16T12:55:26.831Z"
     }
   ]
 }
