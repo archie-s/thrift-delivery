@@ -206,9 +206,9 @@
         "food\r\ndrinks\r\nwater"
       ],
       "riderId": "12",
-      "status": "completed",
+      "status": "in-progress",
       "createdAt": "2025-10-14T10:20:44.351Z",
-      "updatedAt": "2025-10-14T13:52:38.637Z"
+      "updatedAt": "2025-10-16T12:58:37.022Z"
     },
     {
       "id": "20",
@@ -220,9 +220,9 @@
         "buu\r\nrfgrg\r\nt"
       ],
       "riderId": "12",
-      "status": "in-progress",
+      "status": "assigned",
       "createdAt": "2025-10-14T13:28:16.739Z",
-      "updatedAt": "2025-10-14T13:53:09.925Z"
+      "updatedAt": "2025-10-16T13:01:41.158Z"
     },
     {
       "id": "21",
@@ -235,10 +235,10 @@
         "tdhgc",
         "yufjygh"
       ],
-      "riderId": "5",
+      "riderId": "12",
       "status": "assigned",
       "createdAt": "2025-10-15T22:52:32.685Z",
-      "updatedAt": "2025-10-15T22:52:32.686Z"
+      "updatedAt": "2025-10-16T13:03:04.410Z"
     },
     {
       "id": "18",
@@ -253,6 +253,48 @@
       "status": "pending",
       "createdAt": "2025-10-15T23:09:27.502Z",
       "updatedAt": "2025-10-15T23:09:27.502Z"
+    },
+    {
+      "id": "19",
+      "customerName": "Jojo",
+      "address": "34567",
+      "pickupLocation": "Thika",
+      "dropoffLocation": "Meru",
+      "items": [
+        "books"
+      ],
+      "riderId": "12",
+      "status": "pending",
+      "createdAt": "2025-10-16T12:58:09.133Z",
+      "updatedAt": "2025-10-16T12:58:09.133Z"
+    },
+    {
+      "id": "20",
+      "customerName": "wren",
+      "address": "12345",
+      "pickupLocation": "kileleshwa",
+      "dropoffLocation": "muthaiga`",
+      "items": [
+        "laptop"
+      ],
+      "riderId": "12",
+      "status": "pending",
+      "createdAt": "2025-10-16T13:01:41.157Z",
+      "updatedAt": "2025-10-16T13:01:41.157Z"
+    },
+    {
+      "id": "21",
+      "customerName": "Jack",
+      "address": "73001",
+      "pickupLocation": "Mutuini",
+      "dropoffLocation": "Karen",
+      "items": [
+        "Clothes"
+      ],
+      "riderId": "12",
+      "status": "pending",
+      "createdAt": "2025-10-16T13:03:04.408Z",
+      "updatedAt": "2025-10-16T13:03:04.408Z"
     }
   ]
 }

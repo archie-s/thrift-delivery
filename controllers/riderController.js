@@ -51,7 +51,11 @@ exports.startDelivery = async (req, res) => {
             return res.status(403).send('Unauthorized');
         }
         await Order.updateStatus(orderId, 'in-progress', riderId);
-        res.redirect('/rider/dashboard');
+        // Save session to ensure persistence before redirect
+        return req.session.save(err => {
+            if (err) console.error('Session save error after startDelivery:', err);
+            res.redirect('/rider/dashboard');
+        });
     } catch (error) {
         console.error('Start delivery error:', error);
         res.status(500).send('Error starting delivery');
@@ -68,7 +72,11 @@ exports.completeDelivery = async (req, res) => {
             return res.status(403).send('Unauthorized');
         }
         await Order.updateStatus(orderId, 'completed', riderId);
-        res.redirect('/rider/dashboard');
+        // Save session to ensure persistence before redirect
+        return req.session.save(err => {
+            if (err) console.error('Session save error after completeDelivery:', err);
+            res.redirect('/rider/dashboard');
+        });
     } catch (error) {
         console.error('Complete delivery error:', error);
         res.status(500).send('Error completing delivery');
