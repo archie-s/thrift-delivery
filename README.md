@@ -1,6 +1,7 @@
 # Thrift Delivery Management System
 
-A delivery management application for thrift-store owners to manage riders and track deliveries.
+Ths is a group assignment.
+It's a delivery management application for thrift-store owners to manage riders and track deliveries.
 
 ## Features
 
